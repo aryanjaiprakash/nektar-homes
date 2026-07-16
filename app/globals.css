@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #FAF7F2;
+  color: #1C1C1C;
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #FAF7F2; }
+::-webkit-scrollbar-thumb { background: #D8B45A; border-radius: 3px; }
+
+/* ─── Scroll Reveal ─────────────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Ken Burns Hero ────────────────────────────────────────────────────────── */
+
+@keyframes kenBurns {
+  0%   { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.09) translate(-1%, -1%); }
+}
+
+.animate-kenburns {
+  animation: kenBurns 14s ease-out forwards;
+}
+
+/* ─── Masonry Gallery ───────────────────────────────────────────────────────── */
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 6px;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  overflow: hidden;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 640px) {
+  .masonry-grid { column-count: 2; column-gap: 4px; }
+  .masonry-item { margin-bottom: 4px; }
+}
+
+/* ─── Lightbox ──────────────────────────────────────────────────────────────── */
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lightboxSlideIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-overlay {
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+.lightbox-image {
+  animation: lightboxSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Typography Utilities ──────────────────────────────────────────────────── */
+
+.heading-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.heading-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8A8A8A;
+}
+
+/* ─── Image Hover ───────────────────────────────────────────────────────────── */
+
+.img-hover {
+  overflow: hidden;
+}
+
+.img-hover img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* ─── Accordion ─────────────────────────────────────────────────────────────── */
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+  opacity: 0;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* ─── Nav ───────────────────────────────────────────────────────────────────── */
+
+.nav-link {
+  position: relative;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #D8B45A;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ─── Sticky Bar Safe Area ──────────────────────────────────────────────────── */
+
+.sticky-bar {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* ─── Focus Styles ──────────────────────────────────────────────────────────── */
+
+*:focus-visible {
+  outline: 2px solid #D8B45A;
+  outline-offset: 3px;
+}
+
+/* ─── Scroll Line Animation ─────────────────────────────────────────────────── */
+
+@keyframes scrollLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(350%); }
+}
+
+.scroll-line-anim {
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .img-hover img,
+  .animate-kenburns,
+  .accordion-content {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    max-height: none !important;
+  }
+}
