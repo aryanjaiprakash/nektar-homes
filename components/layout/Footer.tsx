@@ -109,7 +109,7 @@ export default function Footer() {
 
         {/* Legal */}
         <div className="pt-6 mt-6 border-t border-white/10 text-xs text-white/30 leading-relaxed text-center sm:text-left">
-          <p>Nektar Homes is a hospitality brand operated by Sunanda Jaiprakash and Aryan Jaiprakash.</p>
+          <p>Nektar Homes is a hospitality brand owned and operated by Sunanda Jaiprakash and Aryan Jaiprakash.</p>
           <p>
             Business Address:
             <br />
