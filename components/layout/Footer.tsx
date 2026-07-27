@@ -110,7 +110,17 @@ export default function Footer() {
         {/* Legal */}
         <div className="pt-6 mt-6 border-t border-white/10 text-xs text-white/30 leading-relaxed text-center sm:text-left">
           <p>Nektar Homes is a hospitality brand operated by Sunanda Jaiprakash and Aryan Jaiprakash.</p>
-          <p>Business Address: 12, 3rd E-F Cross Rd, Indra Nagar, St Thomas Town, Ramaiah Layout, Kacharakanahalli, Bengaluru, Karnataka 560084</p>
+          <p>
+            Business Address:
+            <br />
+            12, 3rd E–F Cross Rd
+            <br />
+            Indra Nagar, St Thomas Town
+            <br />
+            Ramaiah Layout, Kacharakanahalli
+            <br />
+            Bengaluru, Karnataka 560084
+          </p>
         </div>
       </div>
     </footer>
