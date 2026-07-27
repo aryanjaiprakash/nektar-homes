@@ -106,6 +106,12 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Nektar Homes. All rights reserved.</p>
           <p>Thoughtfully Curated Stays in Bangalore</p>
         </div>
+
+        {/* Legal */}
+        <div className="pt-6 mt-6 border-t border-white/10 text-xs text-white/30 leading-relaxed text-center sm:text-left">
+          <p>Nektar Homes is a hospitality brand operated by Sunanda Jaiprakash and Aryan Jaiprakash.</p>
+          <p>Business Address: 12, 3rd E-F Cross Rd, Indra Nagar, St Thomas Town, Ramaiah Layout, Kacharakanahalli, Bengaluru, Karnataka 560084</p>
+        </div>
       </div>
     </footer>
   )
