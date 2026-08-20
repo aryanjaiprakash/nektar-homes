@@ -25,7 +25,7 @@ const structuredData = {
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.jpg` },
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+91-8123203622',
+        telephone: '+91-9980357774',
         contactType: 'customer service',
         availableLanguage: ['English', 'Hindi', 'Kannada'],
       },
@@ -44,7 +44,7 @@ const structuredData = {
       description:
         'Thoughtfully curated 2 & 3BHK furnished homes in Kammanahalli, Bangalore. Self check-in, fully equipped kitchens, king beds.',
       url: SITE_URL,
-      telephone: '+91-8123203622',
+      telephone: '+91-9980357774',
       email: 'stay@nektarhomes.com',
       address: {
         '@type': 'PostalAddress',

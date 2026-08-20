@@ -1,7 +1,7 @@
 import type { Property } from '@/types'
 
 export const SITE_URL = 'https://nektarhomes.com'
-export const WHATSAPP_NUMBER = '918123203622'
+export const WHATSAPP_NUMBER = '919980357774'
 export const CONTACT_EMAIL = 'stay@nektarhomes.com'
 export const INSTAGRAM_HANDLE = 'nektarhomes_'
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`

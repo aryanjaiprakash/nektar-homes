@@ -68,7 +68,7 @@ export default async function PropertyPage({ params }: Props) {
     description: property.tagline,
     url: `${SITE_URL}/properties/${slug}`,
     image: `${SITE_URL}${property.heroImage}`,
-    telephone: '+91-8123203622',
+    telephone: '+91-9980357774',
     email: 'stay@nektarhomes.com',
     address: {
       '@type': 'PostalAddress',

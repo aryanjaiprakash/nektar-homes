@@ -7,7 +7,7 @@ import { SITE_URL } from '@/lib/properties'
 export const metadata: Metadata = {
   title: 'Contact & Book',
   description:
-    'Contact Nektar Homes to check availability and pricing. WhatsApp: +918123203622. Email: stay@nektarhomes.com. Kammanahalli, Bangalore.',
+    'Contact Nektar Homes to check availability and pricing. WhatsApp: +919980357774. Email: stay@nektarhomes.com. Kammanahalli, Bangalore.',
   alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: {
     url: `${SITE_URL}/contact`,
