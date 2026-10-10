@@ -1,5 +1,6 @@
 import { Wifi, Wind, Tv, ChefHat, KeyRound, ShieldCheck, Car, Briefcase } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { AMRUTH_3BHK, ADVAITH_3BHK } from '@/config/site'
 
 const features = [
   {
@@ -30,7 +31,7 @@ const features = [
   {
     icon: Car,
     label: 'Parking',
-    desc: 'Dedicated parking at Amruth and Advaith.',
+    desc: `Dedicated parking at ${AMRUTH_3BHK} and ${ADVAITH_3BHK}.`,
   },
   {
     icon: Briefcase,

@@ -3,11 +3,12 @@ import Image from 'next/image'
 import ContactForm from '@/components/contact/ContactForm'
 import StickyMobileBar from '@/components/ui/StickyMobileBar'
 import { SITE_URL } from '@/lib/properties'
+import { EMAIL_ADDRESS, WHATSAPP_DISPLAY } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Contact & Book',
   description:
-    'Contact Nektar Homes to check availability and pricing. WhatsApp: +919980357774. Email: stay@nektarhomes.com. Kammanahalli, Bangalore.',
+    `Contact Nektar Homes to check availability and pricing. WhatsApp: ${WHATSAPP_DISPLAY}. Email: ${EMAIL_ADDRESS}. Kammanahalli, Bangalore.`,
   alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: {
     url: `${SITE_URL}/contact`,

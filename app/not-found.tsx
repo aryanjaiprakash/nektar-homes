@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { generalEnquiryUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
 
 export default function NotFound() {
   return (
@@ -25,14 +25,12 @@ export default function NotFound() {
           >
             View Properties
           </Link>
-          <a
-            href={generalEnquiryUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={{ kind: 'generic' }}
             className="px-7 py-3 border border-divider text-charcoal text-xs font-medium tracking-widest uppercase hover:border-charcoal transition-colors duration-300"
           >
             WhatsApp Us
-          </a>
+          </WhatsAppLink>
         </div>
       </div>
     </div>

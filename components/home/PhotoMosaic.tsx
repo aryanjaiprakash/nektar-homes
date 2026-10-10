@@ -1,23 +1,24 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK } from '@/config/site'
 
 const mosaicImages = [
   {
     src: '/images/property-2/hero.jpg',
-    alt: 'Nektar Home Advaith — bright, airy living room',
+    alt: `${ADVAITH_3BHK}, bright, airy living room`,
     className: 'col-span-1 md:col-span-1 row-span-2',
     sizes: '(max-width: 768px) 50vw, 33vw',
   },
   {
     src: '/images/property-3/hero.jpg',
-    alt: 'Nektar Home Amruth 2BHK — warm, inviting living room',
+    alt: `${AMRUTH_2BHK}, warm, inviting living room`,
     className: 'col-span-1 row-span-1',
     sizes: '(max-width: 768px) 50vw, 33vw',
   },
   {
     src: '/images/property-1/img-01.jpg',
-    alt: 'Nektar Home Amruth — serene bedroom',
+    alt: `${AMRUTH_3BHK}, serene bedroom`,
     className: 'col-span-1 row-span-1',
     sizes: '(max-width: 768px) 50vw, 33vw',
   },
@@ -29,13 +30,13 @@ const mosaicImages = [
   },
   {
     src: '/images/property-2/img-01.jpg',
-    alt: 'Nektar Home Advaith — editorial bedroom',
+    alt: `${ADVAITH_3BHK}, editorial bedroom`,
     className: 'col-span-1 row-span-1',
     sizes: '(max-width: 768px) 50vw, 33vw',
   },
   {
     src: '/images/property-3/img-04.jpg',
-    alt: 'Nektar Home Amruth 2BHK — bedroom',
+    alt: `${AMRUTH_2BHK}, bedroom`,
     className: 'col-span-1 row-span-1',
     sizes: '(max-width: 768px) 50vw, 33vw',
   },

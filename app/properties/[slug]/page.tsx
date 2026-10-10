@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { properties, getPropertyBySlug, getRelatedProperties, SITE_URL } from '@/lib/properties'
+import { EMAIL_ADDRESS, WHATSAPP_DISPLAY } from '@/config/site'
 import PropertyHero from '@/components/property/PropertyHero'
 import PropertyOverview from '@/components/property/PropertyOverview'
 import Gallery from '@/components/property/Gallery'
@@ -42,13 +43,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: url },
     openGraph: {
       url,
-      title: `${property.name} – ${property.type} Stay in Kammanahalli`,
+      title: `${property.name} Stay in Kammanahalli`,
       description: descriptions[slug],
       images: [{ url: property.heroImage, width: 1200, height: 630, alt: property.name }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${property.name} – ${property.type} Stay in Kammanahalli`,
+      title: `${property.name} Stay in Kammanahalli`,
       images: [property.heroImage],
     },
   }
@@ -68,8 +69,8 @@ export default async function PropertyPage({ params }: Props) {
     description: property.tagline,
     url: `${SITE_URL}/properties/${slug}`,
     image: `${SITE_URL}${property.heroImage}`,
-    telephone: '+91-9980357774',
-    email: 'stay@nektarhomes.com',
+    telephone: WHATSAPP_DISPLAY,
+    email: EMAIL_ADDRESS,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Kammanahalli',
@@ -122,14 +123,14 @@ export default async function PropertyPage({ params }: Props) {
 
       <PropertyHero property={property} />
       <PropertyOverview property={property} />
-      <Gallery images={property.gallery} propertyName={property.shortName} />
+      <Gallery images={property.gallery} propertyName={property.name} />
       <AmenitiesSection property={property} />
       <LocationSection property={property} />
       <HouseRules houseRules={property.houseRules} />
       <PropertyFAQ faq={property.faq} />
       <RelatedProperties properties={related} />
       <BookingCTA />
-      <StickyMobileBar propertyName={property.name} />
+      <StickyMobileBar message={{ kind: 'property', property: property.name }} />
     </>
   )
 }

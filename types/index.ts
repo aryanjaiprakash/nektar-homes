@@ -23,7 +23,6 @@ export interface Property {
   id: string
   slug: string
   name: string
-  shortName: string
   type: '2BHK' | '3BHK'
   tagline: string
   description: string

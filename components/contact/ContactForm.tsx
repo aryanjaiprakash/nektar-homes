@@ -1,51 +1,115 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Mail, MapPin } from 'lucide-react'
-import { contactFormUrl, generalEnquiryUrl } from '@/lib/whatsapp'
-import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '@/lib/properties'
+import { buildEnquiryMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
+import { EMAIL_ADDRESS, PROPERTIES, WHATSAPP_DISPLAY } from '@/config/site'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
-const propertyOptions = [
-  'Nektar Home Amruth (3BHK)',
-  'Nektar Home Advaith (3BHK)',
-  'Nektar Home Amruth 2BHK (2BHK)',
-  'Not sure — help me choose',
-]
+type FormState = {
+  name: string
+  email: string
+  property: string
+  checkIn: string
+  checkOut: string
+  guests: string
+  message: string
+}
+
+type FormErrors = Partial<Record<keyof FormState, string>>
+
+// YYYY-MM-DD in the visitor's local timezone, offset by `days`
+function localISODate(days: number, from?: string): string {
+  const d = from ? new Date(from + 'T00:00:00') : new Date()
+  d.setDate(d.getDate() + days)
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${mm}-${dd}`
+}
+
+function validate(form: FormState, minCheckIn: string): FormErrors {
+  const errors: FormErrors = {}
+
+  if (!form.name.trim()) errors.name = 'Please enter your name.'
+
+  if (!(PROPERTIES as readonly string[]).includes(form.property)) {
+    errors.property = 'Please select a property.'
+  }
+
+  if (!form.checkIn) errors.checkIn = 'Please choose a check-in date.'
+  else if (form.checkIn < minCheckIn) errors.checkIn = 'Check-in must be at least 1 day from today.'
+
+  if (!form.checkOut) errors.checkOut = 'Please choose a check-out date.'
+  else if (form.checkIn && form.checkOut < localISODate(1, form.checkIn)) {
+    errors.checkOut = 'Check-out must be at least 1 day after check-in.'
+  }
+
+  const guests = form.guests.trim()
+  if (!guests) errors.guests = 'Please enter the number of guests.'
+  else if (!/^\d+$/.test(guests) || Number(guests) < 1) errors.guests = 'Enter a whole number of at least 1.'
+
+  return errors
+}
 
 export default function ContactForm() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
-    phone: '',
     property: '',
     checkIn: '',
     checkOut: '',
     guests: '',
     message: '',
   })
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitted, setSubmitted] = useState(false)
+  // Set on the client only so server and client markup match
+  const [minCheckIn, setMinCheckIn] = useState('')
+
+  useEffect(() => {
+    setMinCheckIn(localISODate(1))
+  }, [])
+
+  const minCheckOut = form.checkIn ? localISODate(1, form.checkIn) : minCheckIn && localISODate(1, minCheckIn)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const next = { ...form, [e.target.name]: e.target.value }
+    setForm(next)
+    if (submitted) setErrors(validate(next, minCheckIn || localISODate(1)))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const url = contactFormUrl({
-      name: form.name || 'Guest',
-      property: form.property || 'your properties',
+    setSubmitted(true)
+    const found = validate(form, minCheckIn || localISODate(1))
+    setErrors(found)
+    if (Object.keys(found).length > 0) return
+
+    const text = buildEnquiryMessage({
+      name: form.name,
+      property: form.property,
       checkIn: form.checkIn,
       checkOut: form.checkOut,
       guests: form.guests,
-      message: form.message,
+      note: form.message,
     })
-    window.open(url, '_blank', 'noopener,noreferrer')
+    window.open(buildWhatsAppUrl(text), '_blank', 'noopener,noreferrer')
   }
 
-  const inputClass =
-    'w-full px-4 py-3.5 bg-white border border-divider text-charcoal text-sm font-inter placeholder:text-muted focus:outline-none focus:border-charcoal transition-colors duration-200'
+  const inputBase =
+    'w-full px-4 py-3.5 bg-white border text-charcoal text-sm font-inter placeholder:text-muted focus:outline-none transition-colors duration-200'
+  const inputClass = `${inputBase} border-divider focus:border-charcoal`
+  const fieldClass = (field: keyof FormState) =>
+    errors[field] ? `${inputBase} border-red-700 focus:border-red-700` : inputClass
+  const errorProps = (field: keyof FormState) =>
+    errors[field] ? { 'aria-invalid': true, 'aria-describedby': `${field}-error` } : {}
+  const fieldError = (field: keyof FormState) =>
+    errors[field] ? (
+      <p id={`${field}-error`} className="mt-1.5 font-inter text-xs text-red-700">{errors[field]}</p>
+    ) : null
 
   return (
     <section className="bg-cream py-16 md:py-24">
@@ -58,10 +122,8 @@ export default function ContactForm() {
               <div>
                 <p className="eyebrow mb-4">Reach Us Directly</p>
 
-                <a
-                  href={generalEnquiryUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppLink
+                  message={{ kind: 'generic' }}
                   className="flex items-start gap-3 group mb-5"
                 >
                   <div className="w-9 h-9 border border-divider flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-brass transition-colors duration-300">
@@ -72,19 +134,19 @@ export default function ContactForm() {
                   <div>
                     <p className="font-inter text-xs text-muted mb-0.5">WhatsApp</p>
                     <p className="font-inter text-sm font-medium text-charcoal group-hover:text-brass transition-colors duration-300">
-                      +91 {WHATSAPP_NUMBER.replace('91', '')}
+                      {WHATSAPP_DISPLAY}
                     </p>
                   </div>
-                </a>
+                </WhatsAppLink>
 
-                <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-start gap-3 group mb-5">
+                <a href={`mailto:${EMAIL_ADDRESS}`} className="flex items-start gap-3 group mb-5">
                   <div className="w-9 h-9 border border-divider flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-brass transition-colors duration-300">
                     <Mail size={14} strokeWidth={1.5} className="text-charcoal group-hover:text-brass transition-colors duration-300" />
                   </div>
                   <div>
                     <p className="font-inter text-xs text-muted mb-0.5">Email</p>
                     <p className="font-inter text-sm font-medium text-charcoal group-hover:text-brass transition-colors duration-300">
-                      {CONTACT_EMAIL}
+                      {EMAIL_ADDRESS}
                     </p>
                   </div>
                 </a>
@@ -102,7 +164,7 @@ export default function ContactForm() {
 
               <div className="pt-6 border-t border-divider">
                 <p className="font-inter text-xs text-muted leading-relaxed">
-                  We typically respond within a few hours. For urgent enquiries, WhatsApp is the fastest way to reach us.
+                  Send us your dates on WhatsApp and get your quote in about a minute.
                 </p>
               </div>
             </aside>
@@ -110,45 +172,45 @@ export default function ContactForm() {
 
           {/* Form */}
           <ScrollReveal delay={100} className="md:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-white border border-divider p-8 md:p-10">
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-divider p-8 md:p-10">
               <p className="eyebrow mb-6">Booking Enquiry</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="name">Full Name *</label>
-                  <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} placeholder="Your name" className={inputClass} />
+                  <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} placeholder="Your name" className={fieldClass('name')} {...errorProps('name')} />
+                  {fieldError('name')}
                 </div>
                 <div>
-                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" className={inputClass} />
+                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="email">Email</label>
+                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="your@email.com" className={inputClass} />
                 </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="your@email.com" className={inputClass} />
               </div>
 
               <div className="mb-4">
                 <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="property">Property *</label>
-                <select id="property" name="property" required value={form.property} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
+                <select id="property" name="property" required value={form.property} onChange={handleChange} className={`${fieldClass('property')} appearance-none cursor-pointer`} {...errorProps('property')}>
                   <option value="">Select a property</option>
-                  {propertyOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                  {PROPERTIES.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
                 </select>
+                {fieldError('property')}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="checkIn">Check-In</label>
-                  <input id="checkIn" name="checkIn" type="date" value={form.checkIn} onChange={handleChange} className={inputClass} />
+                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="checkIn">Check-In *</label>
+                  <input id="checkIn" name="checkIn" type="date" required min={minCheckIn || undefined} value={form.checkIn} onChange={handleChange} className={fieldClass('checkIn')} {...errorProps('checkIn')} />
+                  {fieldError('checkIn')}
                 </div>
                 <div>
-                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="checkOut">Check-Out</label>
-                  <input id="checkOut" name="checkOut" type="date" value={form.checkOut} onChange={handleChange} className={inputClass} />
+                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="checkOut">Check-Out *</label>
+                  <input id="checkOut" name="checkOut" type="date" required min={minCheckOut || undefined} value={form.checkOut} onChange={handleChange} className={fieldClass('checkOut')} {...errorProps('checkOut')} />
+                  {fieldError('checkOut')}
                 </div>
                 <div>
-                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="guests">Guests</label>
-                  <input id="guests" name="guests" type="number" min="1" max="12" value={form.guests} onChange={handleChange} placeholder="Number" className={inputClass} />
+                  <label className="block font-inter text-xs text-muted mb-1.5" htmlFor="guests">Guests *</label>
+                  <input id="guests" name="guests" type="number" required min="1" max="12" step="1" inputMode="numeric" value={form.guests} onChange={handleChange} placeholder="Number" className={fieldClass('guests')} {...errorProps('guests')} />
+                  {fieldError('guests')}
                 </div>
               </div>
 
@@ -164,7 +226,7 @@ export default function ContactForm() {
                 Send Enquiry via WhatsApp
               </button>
               <p className="mt-3 text-center font-inter text-xs text-muted">
-                This will open WhatsApp with your details pre-filled.
+                Your message is pre-filled. Just tap Send and we will reply in about a minute.
               </p>
             </form>
           </ScrollReveal>

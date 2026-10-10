@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { properties, SITE_URL } from '@/lib/properties'
-import { propertyEnquiryUrl, generalEnquiryUrl } from '@/lib/whatsapp'
+import { AMRUTH_3BHK } from '@/config/site'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import StickyMobileBar from '@/components/ui/StickyMobileBar'
 
@@ -93,7 +94,7 @@ export default function PropertiesPage() {
                   {property.building && (
                     <div className="mb-6 px-4 py-3 bg-cream border border-divider">
                       <p className="font-inter text-xs text-slate leading-relaxed">
-                        <span className="font-semibold text-charcoal">Same building as Amruth 3BHK.</span>{' '}
+                        <span className="font-semibold text-charcoal">Same building as {AMRUTH_3BHK}.</span>{' '}
                         Book both for up to 12 guests.
                       </p>
                     </div>
@@ -106,14 +107,12 @@ export default function PropertiesPage() {
                     >
                       View Home
                     </Link>
-                    <a
-                      href={propertyEnquiryUrl(property.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <WhatsAppLink
+                      message={{ kind: 'property', property: property.name }}
                       className="flex-1 text-center py-3 bg-charcoal text-white text-xs font-medium tracking-widest uppercase hover:bg-slate transition-colors duration-300"
                     >
                       Enquire
-                    </a>
+                    </WhatsAppLink>
                   </div>
                 </div>
               </article>
@@ -133,14 +132,12 @@ export default function PropertiesPage() {
             <p className="font-inter text-sm text-muted mb-8 max-w-md mx-auto leading-relaxed">
               Tell us your dates, group size and what matters most. We will find the perfect fit.
             </p>
-            <a
-              href={generalEnquiryUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={{ kind: 'generic' }}
               className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-charcoal text-white text-xs font-semibold tracking-widest uppercase hover:bg-slate transition-colors duration-300"
             >
               Chat on WhatsApp
-            </a>
+            </WhatsAppLink>
           </ScrollReveal>
         </div>
       </section>

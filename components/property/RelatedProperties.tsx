@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Property } from '@/types'
-import { propertyEnquiryUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 interface Props {
@@ -58,14 +58,12 @@ export default function RelatedProperties({ properties }: Props) {
                     >
                       View Home
                     </Link>
-                    <a
-                      href={propertyEnquiryUrl(property.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <WhatsAppLink
+                      message={{ kind: 'property', property: property.name }}
                       className="flex-1 text-center py-2.5 bg-charcoal text-white text-xs font-medium tracking-widest uppercase hover:bg-slate transition-colors duration-300"
                     >
                       Enquire
-                    </a>
+                    </WhatsAppLink>
                   </div>
                 </div>
               </article>

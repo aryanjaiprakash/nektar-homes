@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { generalEnquiryUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
@@ -74,14 +74,12 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-            <a
-              href={generalEnquiryUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="ml-2 px-5 py-2.5 bg-brass text-charcoal text-xs font-semibold tracking-widest uppercase transition-opacity hover:opacity-85"
             >
               Enquire
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu toggle */}
@@ -114,15 +112,13 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <a
-            href={generalEnquiryUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={{ kind: 'generic' }}
             className="mt-4 px-8 py-3.5 bg-brass text-charcoal text-xs font-semibold tracking-widest uppercase"
             onClick={() => setOpen(false)}
           >
             Enquire via WhatsApp
-          </a>
+          </WhatsAppLink>
         </nav>
       </div>
     </>

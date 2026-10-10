@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Plus, Minus } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK } from '@/config/site'
 import Link from 'next/link'
 
 const faqs = [
@@ -20,11 +21,11 @@ const faqs = [
   },
   {
     q: 'Can a large group book multiple properties together?',
-    a: 'Absolutely. Nektar Home Amruth 3BHK and Amruth 2BHK are in the same building and can be booked together, accommodating up to 12 guests. Contact us to arrange a combined booking.',
+    a: `Absolutely. ${AMRUTH_3BHK} and ${AMRUTH_2BHK} are in the same building and can be booked together, accommodating up to 12 guests. Contact us to arrange a combined booking.`,
   },
   {
     q: 'Is parking available?',
-    a: 'Yes, dedicated parking is available at Nektar Home Amruth and Nektar Home Advaith.',
+    a: `Yes, dedicated parking is available at ${AMRUTH_3BHK} and ${ADVAITH_3BHK}.`,
   },
   {
     q: 'What is nearby in Kammanahalli?',

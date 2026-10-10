@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { properties } from '@/lib/properties'
-import { propertyEnquiryUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 function StatPill({ value, label }: { value: string | number; label: string }) {
@@ -75,14 +75,12 @@ export default function FeaturedProperties() {
                     >
                       View Home
                     </Link>
-                    <a
-                      href={propertyEnquiryUrl(property.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <WhatsAppLink
+                      message={{ kind: 'property', property: property.name }}
                       className="flex-1 text-center px-4 py-2.5 bg-charcoal text-white text-xs font-medium tracking-widest uppercase hover:bg-slate transition-colors duration-300"
                     >
                       Enquire
-                    </a>
+                    </WhatsAppLink>
                   </div>
                 </div>
               </article>
