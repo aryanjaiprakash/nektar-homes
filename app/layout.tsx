@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import SiteChrome from '@/components/layout/SiteChrome'
 import { SITE_URL } from '@/lib/properties'
+import { ADVAITH_3BHK } from '@/config/site'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
         url: '/images/property-2/hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Nektar Home Advaith — Premium Stay in Bangalore',
+        alt: `${ADVAITH_3BHK}, Premium Stay in Bangalore`,
       },
     ],
   },

@@ -56,7 +56,7 @@ export default function Gallery({ images, propertyName }: Props) {
                 <div className="relative overflow-hidden bg-divider">
                   <Image
                     src={src}
-                    alt={`${propertyName} — photo ${i + 1}`}
+                    alt={`${propertyName}, photo ${i + 1}`}
                     width={800}
                     height={600}
                     className="w-full h-auto object-cover transition-transform duration-700 ease-luxury group-hover:scale-[1.03]"

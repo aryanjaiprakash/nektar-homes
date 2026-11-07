@@ -4,14 +4,14 @@ import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Play, X } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK } from '@/config/site'
 
-// Labels intentionally stay as "Nektar Homes 001/201/401" — the mapping to a
-// specific physical property has not been confirmed yet. No property imagery
-// is used for the posters below so nothing implies a match that isn't confirmed.
+// Film files are named by unit number. Confirmed mapping:
+// 001 = Amruth 3BHK, 201 = Amruth 2BHK, 401 = Advaith 3BHK.
 const FILMS = [
-  { label: 'Nektar Homes 001', number: '001', src: '/videos/nektar-homes-001.mp4' },
-  { label: 'Nektar Homes 201', number: '201', src: '/videos/nektar-homes-201.mp4' },
-  { label: 'Nektar Homes 401', number: '401', src: '/videos/nektar-homes-401.mp4' },
+  { label: AMRUTH_3BHK, src: '/videos/nektar-homes-001.mp4' },
+  { label: AMRUTH_2BHK, src: '/videos/nektar-homes-201.mp4' },
+  { label: ADVAITH_3BHK, src: '/videos/nektar-homes-401.mp4' },
 ]
 
 export default function EventFilms() {
@@ -40,13 +40,8 @@ export default function EventFilms() {
                 onClick={() => setActive(film)}
                 className="group relative block w-full aspect-video rounded-2xl overflow-hidden text-left bg-[#232220] border border-white/5"
               >
-                {/* Editorial poster — no property photo, so no property is implied */}
+                {/* Editorial poster */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(216,180,90,0.22),transparent_60%)]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="heading-display text-white/[0.08] text-[5.5rem] md:text-[6rem] leading-none select-none">
-                    {film.number}
-                  </span>
-                </div>
 
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center transition-transform group-hover:scale-105">

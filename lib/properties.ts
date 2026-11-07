@@ -1,8 +1,7 @@
 import type { Property } from '@/types'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK } from '@/config/site'
 
 export const SITE_URL = 'https://nektarhomes.com'
-export const WHATSAPP_NUMBER = '919980357774'
-export const CONTACT_EMAIL = 'stay@nektarhomes.com'
 export const INSTAGRAM_HANDLE = 'nektarhomes_'
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`
 
@@ -18,15 +17,14 @@ export const properties: Property[] = [
   {
     id: 'property-1',
     slug: 'nektar-home-amruth',
-    name: 'Nektar Home Amruth',
-    shortName: 'Amruth',
+    name: AMRUTH_3BHK,
     type: '3BHK',
     tagline: 'A generous 3-bedroom home with a private patio in the heart of Kammanahalli.',
     description: `Step into a home that balances comfort with character. The bright living room features a 3-seater sectional sofa, two armchairs, a coffee table, and a large flat-screen TV. Natural light streams through the private patio, creating an easy warmth throughout the day.
 
 Each of the three air-conditioned bedrooms comes with a king-sized bed, premium wooden flooring, and a large wooden closet with shelves and drawers. Two bedrooms have private attached bathrooms; a third common bathroom serves the rest of the home, all finished with modern fixtures and premium fittings.
 
-The fully equipped kitchen has everything you need: sleek countertops, a microwave, refrigerator, stove, and a complete set of crockery and cooking essentials. A dedicated workspace makes Amruth equally suited for remote work stays, and the private patio is ideal for morning coffee or quiet evening conversations.`,
+The fully equipped kitchen has everything you need: sleek countertops, a microwave, refrigerator, stove, and a complete set of crockery and cooking essentials. A dedicated workspace makes ${AMRUTH_3BHK} equally suited for remote work stays, and the private patio is ideal for morning coffee or quiet evening conversations.`,
     location: 'Kammanahalli, Bangalore',
     guests: 7,
     bedrooms: 3,
@@ -107,7 +105,7 @@ The fully equipped kitchen has everything you need: sleek countertops, a microwa
     faq: [
       { question: 'How do I book a stay?', answer: 'Simply tap the WhatsApp button and we will confirm your dates, share pricing, and guide you through the booking process directly.' },
       { question: 'What are the check-in and check-out times?', answer: 'Standard check-in is from 2 PM and check-out is by 11 AM. Flexible timings can be arranged on request.' },
-      { question: 'Can I book Amruth and Amruth 2BHK together?', answer: 'Yes. Amruth 3BHK and Amruth 2BHK are in the same building. Booking both accommodates up to 12 guests, ideal for large families or group occasions.' },
+      { question: `Can I book ${AMRUTH_3BHK} and ${AMRUTH_2BHK} together?`, answer: `Yes. ${AMRUTH_3BHK} and ${AMRUTH_2BHK} are in the same building. Booking both accommodates up to 12 guests, ideal for large families or group occasions.` },
       { question: 'Is parking available?', answer: 'Yes, dedicated parking is available at the property.' },
       { question: 'Is the kitchen truly fully equipped?', answer: 'Yes. You will find a microwave, refrigerator, gas stove, cooking oil, spices, crockery, cutlery, and cooking utensils. Everything you need to cook a full meal.' },
       { question: 'What is nearby?', answer: 'Cafés, restaurants and grocery shops are a 5-minute walk away. Manyata Tech Park is 15 minutes by car and Indiranagar is 20 minutes.' },
@@ -117,11 +115,10 @@ The fully equipped kitchen has everything you need: sleek countertops, a microwa
   {
     id: 'property-2',
     slug: 'nektar-home-advaith',
-    name: 'Nektar Home Advaith',
-    shortName: 'Advaith',
+    name: ADVAITH_3BHK,
     type: '3BHK',
     tagline: 'A refined modern 3-bedroom home with private balcony, perfect for families and groups.',
-    description: `Advaith is a beautifully appointed modern home designed for comfort and ease. The living room features a 3-seater sectional sofa, two armchairs, a coffee table, and a flat-screen TV on a wooden cabinet, a welcoming space to gather after a day in the city.
+    description: `${ADVAITH_3BHK} is a beautifully appointed modern home designed for comfort and ease. The living room features a 3-seater sectional sofa, two armchairs, a coffee table, and a flat-screen TV on a wooden cabinet, a welcoming space to gather after a day in the city.
 
 All three bedrooms come with a king-sized bed, a wooden wardrobe with drawers and shelves, air conditioning, and a smart lock for secure, flexible access. The master bedroom features premium wooden flooring; the other two have polished tile flooring. Each bedroom has a private attached bathroom with modern fixtures and premium finishes, a detail that makes a genuine difference for families and groups who value privacy.
 
@@ -205,7 +202,7 @@ The kitchen is equipped with a microwave, refrigerator, stove, and a full set of
     faq: [
       { question: 'How do I book a stay?', answer: 'Tap the WhatsApp button and we will confirm your dates, share pricing, and complete the booking in one conversation.' },
       { question: 'What are the check-in and check-out times?', answer: 'Check-in from 2 PM, check-out by 11 AM. Early or late arrangements can be made on request.' },
-      { question: 'Do all bedrooms have private bathrooms?', answer: 'Yes. Every bedroom at Advaith has its own attached bathroom, making it ideal for families and groups who value privacy.' },
+      { question: 'Do all bedrooms have private bathrooms?', answer: `Yes. Every bedroom at ${ADVAITH_3BHK} has its own attached bathroom, making it ideal for families and groups who value privacy.` },
       { question: 'Is parking available?', answer: 'Yes, dedicated parking is available.' },
       { question: 'Is the kitchen truly fully equipped?', answer: 'Absolutely. The kitchen includes a microwave, refrigerator, gas stove, crockery, cutlery, and cooking essentials.' },
       { question: 'What is nearby?', answer: 'Cafés, restaurants and grocery shops are a short walk away. Manyata Tech Park is 15 minutes and Indiranagar is 20 minutes by car.' },
@@ -214,15 +211,14 @@ The kitchen is equipped with a microwave, refrigerator, stove, and a full set of
   {
     id: 'property-3',
     slug: 'nektar-home-amruth-2bhk',
-    name: 'Nektar Home Amruth 2BHK',
-    shortName: 'Amruth 2BHK',
+    name: AMRUTH_2BHK,
     type: '2BHK',
     tagline: 'A warm, well-appointed 2-bedroom retreat, perfectly scaled for couples, small families and work trips.',
-    description: `The Amruth 2BHK is a thoughtfully designed home that balances intimacy with practicality. Two air-conditioned bedrooms with quality bedding and fresh linens open onto a bright living area with a flat-screen TV. Step out through the private balcony doors to take in the neighbourhood at your own pace.
+    description: `${AMRUTH_2BHK} is a thoughtfully designed home that balances intimacy with practicality. Two air-conditioned bedrooms with quality bedding and fresh linens open onto a bright living area with a flat-screen TV. Step out through the private balcony doors to take in the neighbourhood at your own pace.
 
 The fully equipped kitchen includes a microwave, kettle, and fridge with cooking basics provided. The dining area comfortably seats the whole group. Practical touches like a washing machine, iron and ironing board, and shower essentials are all ready when you arrive.
 
-Smart lock entry means flexible, self-directed check-in, and CCTV security throughout the building ensures peace of mind. Situated in the same building as Nektar Home Amruth, both homes can be booked together to accommodate up to 12 guests for larger family visits or group occasions.`,
+Smart lock entry means flexible, self-directed check-in, and CCTV security throughout the building ensures peace of mind. Situated in the same building as ${AMRUTH_3BHK}, both homes can be booked together to accommodate up to 12 guests for larger family visits or group occasions.`,
     location: 'Kammanahalli, Bangalore',
     guests: 5,
     bedrooms: 2,
@@ -295,7 +291,7 @@ Smart lock entry means flexible, self-directed check-in, and CCTV security throu
     faq: [
       { question: 'How do I book a stay?', answer: 'Tap the WhatsApp button and we will confirm dates, share pricing, and complete everything in one conversation.' },
       { question: 'What are the check-in and check-out times?', answer: 'Check-in from 2 PM, check-out by 11 AM. Flexible arrangements on request.' },
-      { question: 'Can I book this alongside Nektar Home Amruth?', answer: 'Yes. Both homes are in the same building. Together they accommodate up to 12 guests, ideal for larger family visits or group occasions.' },
+      { question: `Can I book this alongside ${AMRUTH_3BHK}?`, answer: 'Yes. Both homes are in the same building. Together they accommodate up to 12 guests, ideal for larger family visits or group occasions.' },
       { question: 'Is a washing machine available?', answer: 'Yes, the 2BHK includes a washing machine, iron, and ironing board. Ideal for longer stays.' },
       { question: 'Is the kitchen truly fully equipped?', answer: 'Yes. Microwave, kettle, refrigerator, crockery, and cooking basics are all provided.' },
       { question: 'What is nearby?', answer: 'Cafés and shops are a 5-minute walk. Manyata Tech Park is 20 minutes and Indiranagar is 25 minutes away by car.' },

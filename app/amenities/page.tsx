@@ -8,6 +8,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import StickyMobileBar from '@/components/ui/StickyMobileBar'
 import BookingCTA from '@/components/home/BookingCTA'
 import { SITE_URL } from '@/lib/properties'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Amenities',
@@ -62,7 +63,7 @@ const amenities = [
     icon: Car,
     label: 'Free Parking',
     description:
-      'Dedicated parking available at Nektar Home Amruth and Nektar Home Advaith.',
+      `Dedicated parking available at ${AMRUTH_3BHK} and ${ADVAITH_3BHK}.`,
   },
   {
     icon: Briefcase,
@@ -74,7 +75,7 @@ const amenities = [
     icon: WashingMachine,
     label: 'Washing Machine',
     description:
-      'Available at Nektar Home Amruth 2BHK, ideal for stays of a week or more.',
+      `Available at ${AMRUTH_2BHK}, ideal for stays of a week or more.`,
   },
   {
     icon: Flower2,
@@ -86,13 +87,13 @@ const amenities = [
     icon: ShowerHead,
     label: 'Premium Bathrooms',
     description:
-      'Modern fixtures and premium finishes throughout. Every bedroom at Advaith has its own attached bathroom.',
+      `Modern fixtures and premium finishes throughout. Every bedroom at ${ADVAITH_3BHK} has its own attached bathroom.`,
   },
   {
     icon: Shield,
     label: 'CCTV Security',
     description:
-      'Security cameras throughout the building at Amruth 2BHK for your peace of mind at all hours.',
+      `Security cameras throughout the building at ${AMRUTH_2BHK} for your peace of mind at all hours.`,
   },
   {
     icon: Coffee,
@@ -104,7 +105,7 @@ const amenities = [
     icon: Zap,
     label: 'Iron & Ironing Board',
     description:
-      'Available at Amruth 2BHK for guests who need to keep their clothes guest-ready.',
+      `Available at ${AMRUTH_2BHK} for guests who need to keep their clothes guest-ready.`,
   },
   {
     icon: ShieldCheck,

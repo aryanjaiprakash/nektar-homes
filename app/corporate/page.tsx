@@ -41,7 +41,7 @@ export default function CorporatePage() {
       <EventConnect />
       <EventContactCTA />
       <EventFooter />
-      <StickyMobileBar />
+      <StickyMobileBar message={{ kind: 'corporate', text: 'event' }} />
     </>
   )
 }

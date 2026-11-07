@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { generalEnquiryUrl } from '@/lib/whatsapp'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
+import { ADVAITH_3BHK } from '@/config/site'
 
 export default function Hero() {
   return (
@@ -10,7 +11,7 @@ export default function Hero() {
         <div className="absolute inset-0 animate-kenburns will-change-transform">
           <Image
             src="/images/property-2/hero.jpg"
-            alt="Nektar Home Advaith — living room"
+            alt={`${ADVAITH_3BHK}, living room`}
             fill
             priority
             quality={90}
@@ -36,14 +37,12 @@ export default function Hero() {
             Self check-in, fully equipped kitchens, king beds.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={generalEnquiryUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={{ kind: 'generic' }}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-brass text-charcoal text-xs font-semibold tracking-widest uppercase hover:opacity-85 transition-opacity"
             >
               Enquire via WhatsApp
-            </a>
+            </WhatsAppLink>
             <Link
               href="/properties"
               className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/40 text-white text-xs font-medium tracking-widest uppercase hover:bg-white/10 transition-colors"

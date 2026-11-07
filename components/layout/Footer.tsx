@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { generalEnquiryUrl } from '@/lib/whatsapp'
-import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '@/lib/properties'
+import WhatsAppLink from '@/components/ui/WhatsAppLink'
+import { AMRUTH_3BHK, ADVAITH_3BHK, AMRUTH_2BHK, EMAIL_ADDRESS, WHATSAPP_DISPLAY } from '@/config/site'
 
 const links = {
   homes: [
-    { href: '/properties/nektar-home-amruth', label: 'Nektar Home Amruth' },
-    { href: '/properties/nektar-home-advaith', label: 'Nektar Home Advaith' },
-    { href: '/properties/nektar-home-amruth-2bhk', label: 'Nektar Home Amruth 2BHK' },
+    { href: '/properties/nektar-home-amruth', label: AMRUTH_3BHK },
+    { href: '/properties/nektar-home-advaith', label: ADVAITH_3BHK },
+    { href: '/properties/nektar-home-amruth-2bhk', label: AMRUTH_2BHK },
   ],
   explore: [
     { href: '/properties', label: 'All Properties' },
@@ -39,14 +39,12 @@ export default function Footer() {
             <p className="text-sm leading-relaxed mb-5 max-w-[220px]">
               Thoughtfully curated 2 &amp; 3BHK stays in Kammanahalli, Bangalore.
             </p>
-            <a
-              href={generalEnquiryUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={{ kind: 'generic' }}
               className="inline-block px-5 py-2.5 bg-brass text-charcoal text-xs font-semibold tracking-widest uppercase hover:opacity-85 transition-opacity"
             >
               Book via WhatsApp
-            </a>
+            </WhatsAppLink>
           </div>
 
           {/* Our Homes */}
@@ -82,18 +80,16 @@ export default function Footer() {
             <p className="eyebrow text-white/40 mb-5">Contact</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <a
-                  href={generalEnquiryUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppLink
+                  message={{ kind: 'generic' }}
                   className="hover:text-white transition-colors"
                 >
-                  +91 {WHATSAPP_NUMBER.replace('91', '')}
-                </a>
+                  {WHATSAPP_DISPLAY}
+                </WhatsAppLink>
               </li>
               <li>
-                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white transition-colors">
-                  {CONTACT_EMAIL}
+                <a href={`mailto:${EMAIL_ADDRESS}`} className="hover:text-white transition-colors">
+                  {EMAIL_ADDRESS}
                 </a>
               </li>
               <li className="text-white/40">Kammanahalli, Bangalore</li>

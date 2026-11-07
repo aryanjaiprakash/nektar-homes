@@ -8,6 +8,7 @@ import FAQSection from '@/components/home/FAQSection'
 import BookingCTA from '@/components/home/BookingCTA'
 import StickyMobileBar from '@/components/ui/StickyMobileBar'
 import { SITE_URL } from '@/lib/properties'
+import { EMAIL_ADDRESS, WHATSAPP_DISPLAY } from '@/config/site'
 
 export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
@@ -25,7 +26,7 @@ const structuredData = {
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.jpg` },
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+91-9980357774',
+        telephone: WHATSAPP_DISPLAY,
         contactType: 'customer service',
         availableLanguage: ['English', 'Hindi', 'Kannada'],
       },
@@ -44,8 +45,8 @@ const structuredData = {
       description:
         'Thoughtfully curated 2 & 3BHK furnished homes in Kammanahalli, Bangalore. Self check-in, fully equipped kitchens, king beds.',
       url: SITE_URL,
-      telephone: '+91-9980357774',
-      email: 'stay@nektarhomes.com',
+      telephone: WHATSAPP_DISPLAY,
+      email: EMAIL_ADDRESS,
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Kammanahalli',
