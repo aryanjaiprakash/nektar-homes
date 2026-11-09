@@ -50,7 +50,7 @@ export function buildEnquiryMessage(params: {
   const guestLabel = Number(guests) === 1 ? `${guests} guest` : `${guests} guests`
 
   const parts = [
-    `[Website Enquiry | ${getSource()}] Hi Nektar Homes, I'm ${name}.`,
+    `Hi Nektar Homes, I'm ${name}.`,
     `I'd like to book ${property} from ${fmtDate(checkIn)} to ${fmtDate(checkOut)} for ${guestLabel}.`,
     note,
     'Please share availability.',
@@ -62,12 +62,12 @@ export function buildWhatsAppUrl(text: string): string {
   return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text)
 }
 
-export function buildGenericMessage(source: string = getSource()): string {
-  return `[Website Enquiry | ${source}] Hi Nektar Homes, I'd like to enquire about your properties and check availability.`
+export function buildGenericMessage(): string {
+  return `Hi Nektar Homes, I'd like to enquire about your properties and check availability.`
 }
 
-export function buildPropertyMessage(property: string, source: string = getSource()): string {
-  return `[Website Enquiry | ${source}] Hi Nektar Homes, I'd like to check availability for ${property.trim()}.`
+export function buildPropertyMessage(property: string): string {
+  return `Hi Nektar Homes, I'd like to check availability for ${property.trim()}.`
 }
 
 // Wording for the /corporate landing page buttons
@@ -91,10 +91,10 @@ export type WhatsAppMessage =
 export function buildMessage(message: WhatsAppMessage, source: string = getSource()): string {
   switch (message.kind) {
     case 'property':
-      return buildPropertyMessage(message.property, source)
+      return buildPropertyMessage(message.property)
     case 'corporate':
       return buildCorporateMessage(message.text, source)
     default:
-      return buildGenericMessage(source)
+      return buildGenericMessage()
   }
 }
